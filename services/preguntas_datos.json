@@ -1,0 +1,75 @@
+[
+    {
+        "pregunta": "Cual actor te gusta mas",
+        "respuestas": [
+            "Robert De Niro",
+            "Meryl Streep",
+            "Leonardo DiCaprio",
+            "Cate Blanchett",
+            "Brad Pitt",
+            "Julia Roberts",
+            "Denzel Washington",
+            "Charlize Theron",
+            "Johnny Depp",
+            "Nicole Kidman",
+            "Al Pacino",
+            "Angelina Jolie",
+            "Tom Cruise",
+            "Harrison Ford",
+            "Natalie Portman",
+            "Will Smith",
+            "Kate Winslet",
+            "Matt Damon",
+            "Emma Stone",
+            "Dwayne Johnson",
+            "Jennifer Lawrence",
+            "George Clooney",
+            "Sandra Bullock",
+            "Christian Bale",
+            "Scarlett Johansson",
+            "Joaquin Phoenix",
+            "Anne Hathaway",
+            "Mark Wahlberg",
+            "Julianne Moore"
+          ]
+    },
+    {
+        "pregunta":"Cual genero de peliculas te gusta mas",
+        "respuestas":[
+            "Accion",
+            "Comedia",
+            "Drama",
+            "Ciencia ficcion",
+            "Aventura",
+            "Romance",
+            "Thriller",
+            "Fantasia"
+          ]
+
+    },
+    {
+        "pregunta":"Cual lugar te parece mas atractivo para una pelicula",
+        "respuestas":[
+            "Hollywood, Los Angeles, California, EE. UU.",
+            "Nueva York, Nueva York, EE. UU.",
+            "Paris, Francia",
+            "Londres, Reino Unido",
+            "Roma, Italia",
+            "Tokio, Japon",
+            "Sidney, Australia",
+            "Cape Town, Sudafrica",
+            "Vancouver, Columbia Britanica, Canada",
+            "Praga, Republica Checa",
+            "Isla de Skye, Escocia, Reino Unido",
+            "Santorini, Grecia",
+            "Marrakech, Marruecos",
+            "Kioto, Japón",
+            "Quebec City, Quebec, Canada",
+            "Ciudad de México, México",
+            "Río de Janeiro, Brasil",
+            "Aoraki / Monte Cook, Nueva Zelanda",
+            "Istambul, Turquia",
+            "Budapest, Hungria"
+          ]
+    }
+]
