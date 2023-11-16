@@ -22,7 +22,7 @@ collection = db['preguntas']
 @app.route('/api/preguntas', methods = ['GET'])
 def get_3_random_preguntas():
     # Realizar la consulta en MongoDB
-    peliculas_aleatorios = collection.aggregate([{ '$sample': { 'size': 3 } },{
+    peliculas_aleatorios = collection.aggregate([{ '$sample': { 'size': 5 } },{
             '$project': {
                 '_id': 0,
                 'pregunta': 1,  # Proyectar el valor del campo aleatorio
@@ -51,7 +51,7 @@ def formatear_para_query(string_a_buscar):
     string_formateado = string_formateado.replace("'", '%27')
     
     # Construye la URL de la consulta
-    url_query = f"https://api.themoviedb.org/3/search/movie?query={string_formateado}&include_adult=false&language=en-US&page=1"
+    url_query = f"https://api.themoviedb.org/3/search/movie?query={string_formateado}&include_adult=false&language=es-ES&page=1"
     
     return url_query
 

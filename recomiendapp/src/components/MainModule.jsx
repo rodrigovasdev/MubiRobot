@@ -6,7 +6,8 @@ import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 
 
-function Cuestionario({ onSendData }){
+function Cuestionario({onSendData}){
+    const [show, setShow] = useState(true);
     console.log('Primera linea comp')
     const [pregunta, setNombre] = useState('');
     const [r1, setR1] = useState('datos[0].pregunta');
@@ -55,20 +56,30 @@ function Cuestionario({ onSendData }){
     setVector([...vector , prop]);
     console.log('el vector' + vector);
     console.log(prop);
-    console.log(indice)
-    setIndice(indice+1);
-    setNombre(datos?.[indice].pregunta);
-    setR1(datos?.[indice].respuestas[1]);
-    setR2(datos?.[indice].respuestas[3]);
-    setR3(datos?.[indice].respuestas[6]);
-    setR4(datos?.[indice].respuestas[2]);
+    console.log(vector)
+    if (indice == 5){
+      setNombre('No quedan mas preguntas ;(');
+      setR1('');
+      setR2('');
+      setR3('');
+      setR4('');
+      onSendData(vector);
+      setShow(false);
+    }else{
+      setIndice(indice+1);
+      setNombre(datos?.[indice].pregunta);
+      setR1(datos?.[indice].respuestas[1]);
+      setR2(datos?.[indice].respuestas[3]);
+      setR3(datos?.[indice].respuestas[6]);
+      setR4(datos?.[indice].respuestas[2]);
+
+
+    }
     
   }
-  const handleClick = () => {
-    onSendData(vector);
-  }
+
     if(datos){
-        return(
+      return show &&(
             <>
                 <Row >    
                     <Col>
@@ -82,15 +93,12 @@ function Cuestionario({ onSendData }){
                                 <Col className='text-center py-3'><Button onClick={() =>cambiarPregunta(r3)}size="lg"variant="light">{r3}</Button>{' '}</Col>
                                 <Col className='text-center py-3'><Button onClick={() =>cambiarPregunta(r4)}size="lg"variant="light">{r4}</Button>{' '}</Col>
                             </Row>
-                            <Button onClick={handleClick}></Button>
                         </Container>
                     </Col>               
                 </Row>
                 
             </>
         )
-
-
 
     }
 }
