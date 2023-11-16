@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Cuestionario from './components/MainModule.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Inputpreferences from './components/inputpreferences.jsx';
+import Inputpreferences from './components/Inputpreferences.jsx';
 import Bot from './components/Bot.jsx';
 import Row from 'react-bootstrap/esm/Row.js';
 import Col from 'react-bootstrap/esm/Col.js';
