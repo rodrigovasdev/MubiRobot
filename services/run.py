@@ -1,7 +1,6 @@
 from pymongo import MongoClient
 from flask import Flask, jsonify, request
 import json
-from bson import json_util
 import random
 from bson.json_util import dumps
 from flask_cors import CORS
@@ -13,7 +12,7 @@ app = Flask(__name__)
 CORS(app)
 # Conecta con la base de datos MongoDB
 client = MongoClient('mongodb://localhost:27017/')
-db = client['recomenbot-db']
+db = client['mubi-bot-db']
 collection = db['preguntas']
 
 # Itera sobre los resultados e imprímelos
@@ -49,6 +48,8 @@ def formatear_para_query(string_a_buscar):
     # Reemplaza los espacios con '%20' para formatear el string para una URL
     string_formateado = string_a_buscar.replace(' ', '%20')
     string_formateado = string_formateado.replace("'", '%27')
+    string_formateado = string_formateado.replace("(", '%28')
+    string_formateado = string_formateado.replace(")", '%29')
     
     # Construye la URL de la consulta
     url_query = f"https://api.themoviedb.org/3/search/movie?query={string_formateado}&include_adult=false&language=es-ES&page=1"
@@ -58,7 +59,6 @@ def formatear_para_query(string_a_buscar):
 
 
 def funcion(pelicula):
-    print(formatear_para_query(pelicula))
     url = formatear_para_query(pelicula)
 
     headers = {
@@ -66,7 +66,6 @@ def funcion(pelicula):
         "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkYTk3M2Y5M2VlMzhhZDlhNzBkNmMxZTdjMTRkY2Y3MiIsInN1YiI6IjY0ZmNlMzgyNmEyMjI3MDBjM2I0MzZiMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ._pIciPiLlGtbhyeFUKwBpaiS-wJ9OVocacR6c4BSF8s"
     }
     response = requests.get(url, headers=headers)
-    ##print(response.text)
     if response.status_code == 200:
 
             # Convierte la respuesta JSON a un diccionario
@@ -83,14 +82,12 @@ def funcion(pelicula):
             descripcion = primer_resultado.get('overview', None)
             fecha_lanzamiento = primer_resultado.get('release_date', None)
             poster = primer_resultado.get('poster_path', None)
-            print (titulo, descripcion)
             nueva_pelicula = {
                 "titulo": titulo,
-                "descripcion": descripcion, # Puedes agregar más atributos aquí
+                "descripcion": descripcion,
                 "fecha": fecha_lanzamiento,
                 "poster": poster
             }
-            print(nueva_pelicula)
     return(nueva_pelicula)
 
 
@@ -104,16 +101,10 @@ def postJsonHandler():
         json.dump(content, json_file)
     # llama tu archivo.py
     subprocess.call("python services/script.py", shell=True)
-    # asegurate que archivo.py genera archivo2
     with open("services/recomendaciones.json") as archivo2:
         datos_s = archivo2.read()
-    ##datos_s = datos_s.replace("'", "\"")
-    ##datos_dict = json.loads(datos_s)
     matches = re.findall(r"'pelicula \d+': '[^']*'", datos_s)
-    #(r"'pelicula \d+': '[\w\s\\']+'", datos_s)
-    print ('este es el tipo de dato ')
-    print (type(matches))
-    print (matches)
+
     for match in matches:
     # Separamos la película y el título
         pelicula, titulo = match.split(': \'')

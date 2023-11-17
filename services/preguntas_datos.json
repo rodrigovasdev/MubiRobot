@@ -63,13 +63,88 @@
             "Isla de Skye, Escocia, Reino Unido",
             "Santorini, Grecia",
             "Marrakech, Marruecos",
-            "Kioto, Japón",
+            "Kioto, Japon",
             "Quebec City, Quebec, Canada",
-            "Ciudad de México, México",
-            "Río de Janeiro, Brasil",
+            "Ciudad de Mexico, Mexico",
+            "Rio de Janeiro, Brasil",
             "Aoraki / Monte Cook, Nueva Zelanda",
             "Istambul, Turquia",
             "Budapest, Hungria"
+          ]
+    },
+    {
+        "pregunta": "Cual director te gusta mas",
+        "respuestas": [
+            "Martin Scorsese",
+            "Steven Spielberg",
+            "Christopher Nolan",
+            "Quentin Tarantino",
+            "James Cameron",
+            "Alfred Hitchcock",
+            "Francis Ford Coppola",
+            "Stanley Kubrick",
+            "Ridley Scott",
+            "Clint Eastwood",
+            "Tim Burton",
+            "Joel Coen",
+            "Ethan Coen",
+            "Pedro Almodovar",
+            "Guillermo del Toro",
+            "Woody Allen",
+            "David Fincher",
+            "Sofia Coppola",
+            "Ang Lee",
+            "Darren Aronofsky",
+            "James Cameron",
+            "Wes Anderson",
+            "Baz Luhrmann",
+            "Spike Lee",
+            "Ron Howard",
+            "Quentin Tarantino"
+          ]
+    },
+    {
+        "pregunta":"Escoge un periodo de la historia",
+        "respuestas":[
+            "Edad Antigua",
+            "Edad Media",
+            "Renacimiento",
+            "Barroco",
+            "Ilustracion",
+            "Revolución Industrial",
+            "Belle Epoque",
+            "Primera Guerra Mundial",
+            "Entre Guerras",
+            "Segunda Guerra Mundial",
+            "Guerra Fria",
+            "Decada de 1950",
+            "Decada de 1960",
+            "Decada de 1970",
+            "Decada de 1980",
+            "Decada de 1990",
+            "Siglo XXI"
+          ]
+
+    },
+    {
+        "pregunta":"Escoge un estilo musical",
+        "respuestas":[
+            "Ambient",
+            "Funk",
+            "Reggae",
+            "Indie",
+            "Soul",
+            "Disco",
+            "Folk",
+            "Jazz",
+            "Rock",
+            "Electronica",
+            "Clasica",
+            "Hip-hop",
+            "Country",
+            "Blues",
+            "R&B",
+            "Pop"
           ]
     }
 ]

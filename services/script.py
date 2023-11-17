@@ -1,4 +1,3 @@
-import os
 import openai
 import json
 
@@ -14,7 +13,7 @@ openai.api_key = "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"
 completion = openai.ChatCompletion.create(
   model="ft:gpt-3.5-turbo-0613:pucv::7wzCAPha",
   messages=[
-    {"role": "system", "content": "Quiero que actues como un asistente experto en cine y me recomiendes 7 peliculas con sus nombres en ingles en formato json en base a las palabras que user te entregara."},
+    {"role": "system", "content": "Quiero que actues como un asistente experto en cine y me recomiendes 10 peliculas con sus nombres en ingles en formato json en base a las palabras que user te entregara."},
     {"role": "user", "content": preferencias_string}
   ]
 )

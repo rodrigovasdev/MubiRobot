@@ -4,10 +4,11 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
-
+import { motion ,useAnimation} from "framer-motion"
 
 function Cuestionario({onSendData}){
     const [show, setShow] = useState(true);
+    const [showSaltarButton, setSaltarButton] = useState(false);
     console.log('Primera linea comp')
     const [pregunta, setNombre] = useState('');
     const [r1, setR1] = useState('datos[0].pregunta');
@@ -17,7 +18,7 @@ function Cuestionario({onSendData}){
     const [datos, setDatos] = useState(null);
     const [indice, setIndice] = useState(1);
     const [vector, setVector] = useState([]);
-    
+   
   useEffect(() => {
     let cancelarSolicitud = false; // Variable para rastrear si el componente se ha desmontado
     
@@ -52,19 +53,18 @@ function Cuestionario({onSendData}){
       cancelarSolicitud = true; // Marcar que el componente se está desmontando
     };
   }, [datos]); // La dependencia aquí asegura que el efecto se ejecute solo cuando datos cambie
+
+  function enviarData(){
+    onSendData(vector);
+    setShow(false);
+  }
   function cambiarPregunta(prop){
     setVector([...vector , prop]);
-    console.log('el vector' + vector);
-    console.log(prop);
-    console.log(vector)
+    if (indice == 2){
+      setSaltarButton(true);
+    }
     if (indice == 5){
-      setNombre('No quedan mas preguntas ;(');
-      setR1('');
-      setR2('');
-      setR3('');
-      setR4('');
-      onSendData(vector);
-      setShow(false);
+      enviarData()
     }else{
       setIndice(indice+1);
       setNombre(datos?.[indice].pregunta);
@@ -72,8 +72,6 @@ function Cuestionario({onSendData}){
       setR2(datos?.[indice].respuestas[3]);
       setR3(datos?.[indice].respuestas[6]);
       setR4(datos?.[indice].respuestas[2]);
-
-
     }
     
   }
@@ -81,21 +79,33 @@ function Cuestionario({onSendData}){
     if(datos){
       return show &&(
             <>
-                <Row >    
-                    <Col>
-                        <Container className='shadow-lg border border-black rounded-pill py-4 px-5 bg-dark-subtle' >
-                            <Container className='position-relative w-50 py-3 px-3 fs-4 shadow-sm p-3 mb-4 text-bg-secondary border border-white rounded-pill text-center '> {pregunta} </Container>
-                            <Row className='py-1'>
-                                <Col className='text-center py-1'><Button onClick={() =>cambiarPregunta(r1)} size="lg"variant="light"> {r1}</Button>{' '}</Col>
-                                <Col className='text-center py-1'><Button onClick={() =>cambiarPregunta(r2)}size="lg"variant="light">{r2}</Button>{' '}</Col>
-                            </Row>
-                            <Row className='py-1'>
-                                <Col className='text-center py-3'><Button onClick={() =>cambiarPregunta(r3)}size="lg"variant="light">{r3}</Button>{' '}</Col>
-                                <Col className='text-center py-3'><Button onClick={() =>cambiarPregunta(r4)}size="lg"variant="light">{r4}</Button>{' '}</Col>
-                            </Row>
-                        </Container>
-                    </Col>               
-                </Row>
+              <motion.div animate={{ x: 50 }}transition={{ type: "spring", stiffness: 100 }}>
+                  <Row >    
+                      <Col>
+                          <Container className='shadow-lg border border-black rounded-pill py-4 px-5 bg-dark-subtle' >
+                              <Container className='position-relative w-50 py-3 px-3 fs-4 shadow-sm p-3 mb-4 text-bg-secondary border border-white rounded-pill text-center '> {pregunta} </Container>
+                              
+                              <Row className='py-1'>
+                                  <Col className='text-center py-1'><Button onClick={() =>cambiarPregunta(r1)} size="lg"variant="light"> {r1}</Button>{' '}</Col>
+                                  <Col className='text-center py-1'><Button onClick={() =>cambiarPregunta(r2)}size="lg"variant="light">{r2}</Button>{' '}</Col>
+                                  
+                              </Row>
+    
+                              <Row className='py-1'>
+                              <Col className='text-center py-3'><Button onClick={() =>cambiarPregunta(r3)}size="lg"variant="light">{r3}</Button>{' '}</Col>
+                                  <Col className='text-center py-3'><Button onClick={() =>cambiarPregunta(r4)}size="lg"variant="light">{r4}</Button>{' '}</Col>
+                              </Row>
+                              <Row>
+                                {showSaltarButton && <Col className='text-center'>
+                                <Button onClick={() => enviarData()} className='py-2 mb-2 w-25 text-center btn btn-dark'>Saltar Cuestionario</Button>
+                                </Col>}
+                              
+                                
+                              </Row>
+                          </Container>
+                      </Col>               
+                  </Row>
+                </motion.div>
                 
             </>
         )
