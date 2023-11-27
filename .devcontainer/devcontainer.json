@@ -1,14 +1,1 @@
-{
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
-  "settings": {
-        "terminal.integrated.shell.linux": "/bin/bash"
-    },
-    "extensions": [
-        "ms-python.python",
-        "ms-python.vscode-pylance"
-    ],
-    "forwardPorts": [5000],
-    "postCreateCommand": "pip install -r services/requirements.txt",
-    "remoteUser": "vscode"
-}
 
