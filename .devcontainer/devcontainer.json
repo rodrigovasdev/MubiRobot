@@ -8,7 +8,7 @@
         "ms-python.vscode-pylance"
     ],
     "forwardPorts": [5000],
-    "postCreateCommand": "pip install -r requirements.txt",
+    "postCreateCommand": "pip install -r services/requirements.txt",
     "remoteUser": "vscode"
 }
 
