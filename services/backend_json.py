@@ -10,36 +10,21 @@ import requests
 
 app = Flask(__name__)
 CORS(app)
-# Conecta con la base de datos MongoDB
-client = MongoClient('mongodb://localhost:27017/')
-db = client['mubi-bot-db']
-collection = db['preguntas']
 
-# Itera sobre los resultados e imprímelos
 
 
 @app.route('/api/preguntas', methods = ['GET'])
 def get_3_random_preguntas():
-    # Realizar la consulta en MongoDB
-    peliculas_aleatorios = collection.aggregate([{ '$sample': { 'size': 5 } },{
-            '$project': {
-                '_id': 0,
-                'pregunta': 1,  # Proyectar el valor del campo aleatorio
-                'respuestas': 1  # Proyectar el vectorCampo
-            }
-    }])
-    resultados_finales = []
-    for documento in peliculas_aleatorios:
-        # Barajar los elementos del vectorCampo
-        vector_barajado = random.sample(documento['respuestas'], len(documento['respuestas']))
-        
-        # Actualizar el documento con el vector barajado
-        documento['respuestas'] = vector_barajado
+    with open('services/preguntas_datos.json', 'r') as archivo:
+        datos = json.load(archivo)
 
-        # Agregar el documento resultante a la lista
-        resultados_finales.append(documento)
+# Accede al arreglo 'personas' dentro del JSON
+    preguntas = datos
+
+# Obtén 5 objetos aleatorios
+    preguntas_aleatorias = random.sample(preguntas, 5)
     
-    resultado_json = dumps(resultados_finales)
+    resultado_json = dumps(preguntas_aleatorias)
     # Devolver la lista en formato JSON
     return resultado_json
 

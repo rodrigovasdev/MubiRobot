@@ -56,6 +56,7 @@ function Results({preferencias}){
             
           } catch (error) {
             // Manejar errores de la solicitud POST
+            
             console.error('Error en la solicitud POST:', error);
           }
         };
