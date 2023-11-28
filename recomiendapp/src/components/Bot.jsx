@@ -6,7 +6,8 @@ function Bot(){
     return(
         <>
             <Container className=''>
-                <img src={miImagen} alt="Descripción de la imagen" />
+                <img src={miImagen} alt="Descripción de la imagen" width="auto"
+                  height="auto"/>
             </Container>
         </>
 

@@ -23,6 +23,13 @@ def get_3_random_preguntas():
 
 # Obtén 5 objetos aleatorios
     preguntas_aleatorias = random.sample(preguntas, 5)
+    print('aqui va la preguntaa')
+    preguntas_aleatorias[0]["respuestas"] = random.sample(preguntas_aleatorias[0]["respuestas"], 8)
+    preguntas_aleatorias[1]["respuestas"] = random.sample(preguntas_aleatorias[1]["respuestas"], 8)
+    preguntas_aleatorias[2]["respuestas"] = random.sample(preguntas_aleatorias[2]["respuestas"], 8)
+    preguntas_aleatorias[3]["respuestas"] = random.sample(preguntas_aleatorias[3]["respuestas"], 8)
+    preguntas_aleatorias[4]["respuestas"] = random.sample(preguntas_aleatorias[4]["respuestas"], 8)
+    
     
     resultado_json = dumps(preguntas_aleatorias)
     # Devolver la lista en formato JSON
@@ -63,27 +70,38 @@ def funcion(pelicula):
     }
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
+        
 
             # Convierte la respuesta JSON a un diccionario
             datos = response.json()
+            if (datos.get('total_results') != 0):
 
-            # Accede a los campos dentro del objeto JSON
-            page = datos.get('page', None)
-            
-            # Accede a la lista de resultados y toma el primer elemento (índice 0)
-            primer_resultado = datos.get('results', [])[0] 
+                # Accede a los campos dentro del objeto JSON
+                page = datos.get('page', None)
+                
+                # Accede a la lista de resultados y toma el primer elemento (índice 0)
+                print(datos.get('total_results'))
+                primer_resultado = datos.get('results', [])[0] 
 
-            # Accede a los campos dentro del primer resultado
-            titulo = primer_resultado.get('title', None)
-            descripcion = primer_resultado.get('overview', None)
-            fecha_lanzamiento = primer_resultado.get('release_date', None)
-            poster = primer_resultado.get('poster_path', None)
-            nueva_pelicula = {
-                "titulo": titulo,
-                "descripcion": descripcion,
-                "fecha": fecha_lanzamiento,
-                "poster": poster
+                # Accede a los campos dentro del primer resultado
+                titulo = primer_resultado.get('title', None)
+                descripcion = primer_resultado.get('overview', None)
+                fecha_lanzamiento = primer_resultado.get('release_date', None)
+                poster = primer_resultado.get('poster_path', None)
+                nueva_pelicula = {
+                    "titulo": titulo,
+                    "descripcion": descripcion,
+                    "fecha": fecha_lanzamiento,
+                    "poster": poster
+                }
+            else:
+                nueva_pelicula = {
+                "titulo": 'Lo sentimos!',
+                "descripcion": 'Ha ocurrido un error con tu Mubi!',
+                "fecha": 'null',
+                "poster": 'null'
             }
+
     else:
         nueva_pelicula = {
                 "titulo": 'null',
